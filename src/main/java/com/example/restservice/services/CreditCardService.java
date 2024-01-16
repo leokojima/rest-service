@@ -22,7 +22,7 @@ public class CreditCardService {
         return REPOSITORY_CC;
     }
 
-    public CreditCard getCreditCardById(String id) {
+    public CreditCard getCreditCardById(Integer id) {
         return REPOSITORY_CC.stream()
             .filter(cc -> id.equals(cc.getId()))
             .findFirst()
