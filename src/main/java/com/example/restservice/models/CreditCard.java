@@ -11,21 +11,17 @@ import java.util.Objects;
 @Entity
 public class CreditCard {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private String id;
+    private Integer id;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private String cardNumber;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private String cardHolder;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private String cardExpirationDate;
 
     public CreditCard() { }
@@ -60,19 +56,18 @@ public class CreditCard {
         }
         CreditCard creditCard = (CreditCard) o;
         return id == creditCard.id;
-            // && Objects.equals(cardHolder, creditCard.cardHolder)
-            // && Objects.equals(cardExpirationDate, creditCard.cardExpirationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cardNumber, cardHolder, cardExpirationDate);
+        return Objects.hash(id, cardNumber, cardHolder, cardExpirationDate);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " cardNumber='" + getCardNumber() + "'" +
+            " id='" + getId() + "'" +
+            ", cardNumber='" + getCardNumber() + "'" +
             ", cardHolder='" + getCardHolder() + "'" +
             ", cardExpirationDate='" + getCardExpirationDate() + "'" +
             "}";
