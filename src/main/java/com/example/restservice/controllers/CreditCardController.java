@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/wallet/")
+@RequestMapping("/api/creditcard/")
 public class CreditCardController {
 
     @Autowired
@@ -21,12 +21,12 @@ public class CreditCardController {
         return service.getAll();
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public CreditCard getCreditCardById(@PathVariable Integer id) {
         return service.getCreditCardById(id);
     }
 
-    @GetMapping("/{cardNumber}")
+    @GetMapping("/cardNumber/{cardNumber}")
     public CreditCard getCreditCardByCardNumber(@PathVariable String cardNumber) {
         return service.getCreditCardByCardNumber(cardNumber);
     }
