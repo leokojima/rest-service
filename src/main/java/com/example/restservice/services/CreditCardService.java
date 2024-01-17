@@ -2,7 +2,6 @@ package com.example.restservice.services;
 
 import com.example.restservice.models.CreditCard;
 import com.example.restservice.repositories.CreditCardRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ public class CreditCardService {
     @Autowired
     private CreditCardRepository repository;
 
-    public List<CreditCard> getAll() {
+    public Iterable<CreditCard> getAll() {
         return repository.findAll();
     }
 
@@ -24,8 +23,13 @@ public class CreditCardService {
         return repository.findByCardNumber(cardNumber);
     }
 
-    public CreditCard getCreditCardByCardHolder(String cardHolder) {
-        return repository.findByCardNumber(cardHolder);
+    public boolean deleteById(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

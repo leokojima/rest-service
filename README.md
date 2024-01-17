@@ -19,7 +19,7 @@ java -jar target/rest-service-0.0.1-SNAPSHOT.jar
 
 ### swagger-ui
 
-1. Only GetAll works
+1. Only Get and Delete works
 2. You can configure not to add some initial lines to h2 in application.properties
 3. removed Class CreditCardCommandLineRunner, which is a simple implementation to visualize said initial lines on when debugging
 4. added swagger ui
