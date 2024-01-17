@@ -1,5 +1,6 @@
 package com.example.restservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.Entity;
@@ -12,20 +13,17 @@ import java.util.Objects;
 @Entity
 public class CreditCard {
 
-    @Getter
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer id;
 
-    @Getter @Setter
-    @NotBlank
+    @Getter @Setter @NotBlank
     private String cardNumber;
 
-    @Getter @Setter
-    @NotBlank
+    @Getter @Setter @NotBlank
     private String cardHolder;
 
-    @Getter @Setter
-    @NotBlank
+    @Getter @Setter @NotBlank
     private String cardExpirationDate;
 
     public CreditCard() { }
