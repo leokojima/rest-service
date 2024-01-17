@@ -6,22 +6,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
 public class CreditCard {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Getter @Setter
+    @NotBlank
     private String cardNumber;
 
     @Getter @Setter
+    @NotBlank
     private String cardHolder;
 
     @Getter @Setter
+    @NotBlank
     private String cardExpirationDate;
 
     public CreditCard() { }
