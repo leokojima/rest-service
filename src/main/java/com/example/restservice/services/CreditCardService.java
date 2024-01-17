@@ -1,5 +1,7 @@
 package com.example.restservice.services;
 
+import com.example.restservice.exceptions.CreditCardAlreadyExistsException;
+import com.example.restservice.exceptions.CreditCardNotFoundException;
 import com.example.restservice.models.CreditCard;
 import com.example.restservice.repositories.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,19 @@ public class CreditCardService {
         return repository.findByCardNumber(cardNumber);
     }
 
-    public boolean deleteById(Integer id) {
+    public CreditCard create(CreditCard creditCard) {
+        if (repository.existsByCardNumber(creditCard.getCardNumber())) {
+            throw new CreditCardAlreadyExistsException(String.format("CreditCard already exists with cardNumber: %s", creditCard.getCardNumber()));
+        } else {
+            return repository.save(creditCard);
+        }
+    }
+
+    public void deleteById(Integer id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
-            return true;
         } else {
-            return false;
+            throw new CreditCardNotFoundException(String.format("CreditCard not found with id: %s", id));
         }
     }
 
