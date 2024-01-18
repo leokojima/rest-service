@@ -4,7 +4,7 @@ import com.example.restservice.models.CreditCard;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CreditCardRepository extends CrudRepository<CreditCard, Integer> {
+public interface ICreditCardRepository extends CrudRepository<CreditCard, Integer> {
 
     boolean existsByCardNumber(String cardNumber);
 
