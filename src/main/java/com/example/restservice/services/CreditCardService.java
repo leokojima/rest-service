@@ -4,6 +4,7 @@ import com.example.restservice.exceptions.CreditCardAlreadyExistsException;
 import com.example.restservice.exceptions.CreditCardNotFoundException;
 import com.example.restservice.models.CreditCard;
 import com.example.restservice.repositories.CreditCardRepository;
+import com.example.restservice.validators.CreditCardValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class CreditCardService {
     }
 
     public CreditCard create(CreditCard creditCard) {
+        CreditCardValidator.throwIfCreditCardIsInvalid(creditCard);
+
         if (repo.existsByCardNumber(creditCard.getCardNumber())) {
             throw new CreditCardAlreadyExistsException(String.format("CreditCard already exists with cardNumber: %s", creditCard.getCardNumber()));
         } else {
@@ -34,10 +37,13 @@ public class CreditCardService {
     }
 
     public CreditCard update(Integer id, CreditCard creditCard) {
+        CreditCardValidator.throwIfCreditCardIsInvalid(creditCard);
+
         CreditCard creditCardInDb = getCreditCardById(id);
         creditCardInDb.setCardNumber(creditCard.getCardNumber());
         creditCardInDb.setCardHolder(creditCard.getCardHolder());
         creditCardInDb.setCardExpirationDate(creditCard.getCardExpirationDate());
+
         return repo.save(creditCardInDb);
     }
 
