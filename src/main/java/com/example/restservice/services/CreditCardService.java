@@ -23,7 +23,7 @@ public class CreditCardService {
     }
 
     public CreditCard getCreditCardByCardNumber(String cardNumber) {
-        return repo.findByCardNumber(cardNumber);
+        return repo.findByCardNumber(cardNumber).orElseThrow();
     }
 
     public CreditCard create(CreditCard creditCard) {
