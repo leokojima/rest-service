@@ -3,7 +3,7 @@ package com.example.restservice.services;
 import com.example.restservice.exceptions.CreditCardAlreadyExistsException;
 import com.example.restservice.exceptions.CreditCardNotFoundException;
 import com.example.restservice.models.CreditCard;
-import com.example.restservice.repositories.CreditCardRepository;
+import com.example.restservice.repositories.ICreditCardRepository;
 import com.example.restservice.validators.CreditCardValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CreditCardService {
 
     @Autowired
-    private CreditCardRepository repo;
+    private ICreditCardRepository repo;
 
     public Iterable<CreditCard> getAll() {
         return repo.findAll();
