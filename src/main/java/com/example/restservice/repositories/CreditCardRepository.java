@@ -1,12 +1,13 @@
 package com.example.restservice.repositories;
 
 import com.example.restservice.models.CreditCard;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+import org.springframework.data.repository.CrudRepository;
 
-public interface CreditCardRepository extends JpaRepository<CreditCard, Integer> {
+public interface CreditCardRepository extends CrudRepository<CreditCard, Integer> {
 
-    CreditCard findByCardNumber(String cardNumber);
+    boolean existsByCardNumber(String cardNumber);
 
-    CreditCard findByCardHolder(String cardHolder);
+    Optional<CreditCard> findByCardNumber(String cardNumber);
 
 }
